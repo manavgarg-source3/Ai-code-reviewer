@@ -1,0 +1,151 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Layout */
+main {
+  height: 100%;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+main .left,
+main .right {
+  height: 100%;
+  flex-basis: 50%;
+  border-radius: 0.7rem;
+  overflow: hidden;
+}
+
+/* Left Side */
+main .left {
+  background-color: #121212; /* unified dark background */
+  position: relative;
+  padding: 1rem;
+  color: white;
+}
+
+.left h2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Code Editor */
+.left .code,
+.code pre,
+.code pre code {
+  height: calc(100% - 100px);
+  width: 100%;
+  margin: 0;
+  border-radius: 0.1rem;
+  background-color: #121212;
+  /*matchleftbackground*/color: #ffffff;
+  font-size: 16px;
+  border: 1px solid #2c2c2c;
+  -webkit-border-radius: 0.1rem;
+  -moz-border-radius: 0.1rem;
+  -ms-border-radius: 0.1rem;
+  -o-border-radius: 0.1rem;
+}
+
+
+/* Review Button */
+main .left .review {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: rgb(219, 219, 255);
+  color: #000000;
+  padding: 0.5rem 2rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s ease;
+}
+
+/* Spinner inside button */
+.review .spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #000;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+/* Disable effect */
+.review.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  background-color: #aaa;
+  color: #333;
+}
+
+/* Spinner animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Right Side Output */
+main .right {
+  background-color: #1e1e2f;
+  color: #e0e0e0;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  overflow-y: auto;
+  line-height: 1.6;
+}
+
+main .right h2 {
+  font-size: 1.25rem;
+  color: #50fa7b;
+  margin-bottom: 1rem;
+}
+
+/* Markdown Rendering */
+main .right pre {
+  background-color: #2d2d40;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  color: #d1ffd1;
+  margin-top: 1rem;
+}
+
+main .right code {
+  background-color: #333;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+main .right h1,
+main .right h2,
+main .right h3 {
+  color: #50fa7b;
+  margin-top: 1rem;
+}
+
+main .right ul {
+  padding-left: 1.2rem;
+  margin-top: 1rem;
+}
