@@ -1,25 +1,31 @@
 const express = require('express');
-const aiRoutes = require('./routes/ai.routes')
-const cors = require('cors')
+const aiRoutes = require('./routes/ai.routes');
+const cors = require('cors');
 
-const app = express()
+const app = express();
 
-app.use(cors(
-    {
-        origin: 'http://localhost:5173',
-        origin: 'https://ai-code-reviewer-beryl-six.vercel.app/',
+// ✅ Fixed: Use `origin` as a function to allow multiple domains
+app.use(cors({
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      'http://localhost:5173',
+      'https://ai-code-reviewer-beryl-six.vercel.app'
+    ];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+}));
 
-        credentials: true
-        }   
-))
-
-
-app.use(express.json())
+app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('Hello World')
-})
+  res.send('Hello World');
+});
 
-app.use('/ai', aiRoutes)
+app.use('/ai', aiRoutes);
 
-module.exports = app
+module.exports = app;
