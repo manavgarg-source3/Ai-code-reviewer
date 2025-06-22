@@ -22,17 +22,20 @@ function App() {
 
   async function reviewCode() {
     setLoading(true)
-    setReview("") // clear old review while loading
+    setReview("") // Clear previous review while loading
 
     try {
-      const response = await axios.post('http://localhost:3000/ai/get-review', { code })
+      const response = await axios.post(
+        'https://ai-code-reviewer-tzir.onrender.com/ai/get-review',
+        { code }
+      )
       if (response.data.success) {
         setReview(response.data.feedback)
       } else {
         setReview("❌ Failed to generate review.")
       }
     } catch (err) {
-      setReview("❌ Server error. Please try again. or check u have given code or not")
+      setReview("❌ Server error. Please try again or check if you have given code.")
     }
 
     setLoading(false)
